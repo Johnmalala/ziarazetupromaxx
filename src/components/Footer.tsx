@@ -9,12 +9,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">Z</span>
-              </div>
-              <span className="text-2xl font-bold">Ziarazetu</span>
-            </div>
+            <span className="text-2xl font-bold">Ziarazetu</span>
             <p className="text-gray-300 text-sm">
               Discover the beauty of East Africa with our carefully curated tours, comfortable stays, and meaningful volunteer opportunities.
             </p>

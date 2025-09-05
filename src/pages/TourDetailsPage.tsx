@@ -6,7 +6,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { useListing } from '../hooks/useListings';
 import { useAuth } from '../hooks/useAuth';
 import AvailabilityCalendar from '../components/AvailabilityCalendar';
-import { getImageUrl } from '../lib/utils';
+import ImageGallery from '../components/ImageGallery'; // Import the new component
 
 const TourDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,53 +22,29 @@ const TourDetailsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-96">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${getImageUrl(tour.images, tour.id)})` }}
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-40" />
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-white"
-          >
-            <Link
-              to="/tours"
-              className="inline-flex items-center space-x-2 text-white hover:text-red-300 mb-4"
-            >
-              <ArrowLeft className="w-5 h-5" />
-              <span>Back to Tours</span>
-            </Link>
-            
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">{tour.title}</h1>
-            
-            <div className="flex flex-wrap items-center gap-6 text-lg">
-              <div className="flex items-center space-x-2">
-                <MapPin className="w-5 h-5" />
-                <span>{tour.location}</span>
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                <span>{tour.rating}</span>
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <span className="text-3xl font-bold">KES {tour.price?.toLocaleString()}</span>
-                <span className="text-lg opacity-80">/person</span>
-              </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-6"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">{tour.title}</h1>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-gray-600">
+            <div className="flex items-center space-x-2">
+              <Star className="w-5 h-5 text-yellow-400 fill-current" />
+              <span>{tour.rating}</span>
             </div>
-          </motion.div>
-        </div>
-      </section>
+            <div className="flex items-center space-x-2">
+              <MapPin className="w-5 h-5" />
+              <span>{tour.location}</span>
+            </div>
+          </div>
+        </motion.div>
 
-      {/* Content Section */}
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ImageGallery images={tour.images} listingTitle={tour.title} />
+
+        {/* Content Section */}
+        <section className="py-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
@@ -76,22 +52,6 @@ const TourDetailsPage: React.FC = () => {
                 <h2 className="text-2xl font-bold mb-4">About This Tour</h2>
                 <p className="text-gray-600 leading-relaxed">{tour.description}</p>
               </motion.div>
-              
-              {tour.images && tour.images.length > 1 && (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                  <h2 className="text-2xl font-bold mb-4">Gallery</h2>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {tour.images.map((imagePath, index) => (
-                      <img 
-                        key={index}
-                        src={getImageUrl([imagePath], tour.id)} 
-                        alt={`${tour.title} gallery image ${index + 1}`}
-                        className="rounded-lg object-cover w-full h-40"
-                      />
-                    ))}
-                  </div>
-                </motion.div>
-              )}
 
               {itinerary && (
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
@@ -166,8 +126,8 @@ const TourDetailsPage: React.FC = () => {
               </motion.div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 };
