@@ -46,7 +46,7 @@ export type Database = {
           location: string | null;
           type: string | null;
           availability: any;
-          images: string[] | null; // Changed from image to images
+          images: string[] | null;
           features: any;
           amenities: any;
           itinerary: any;
@@ -63,7 +63,7 @@ export type Database = {
           location?: string | null;
           type?: string | null;
           availability?: any;
-          images?: string[] | null; // Changed from image to images
+          images?: string[] | null;
           features?: any;
           amenities?: any;
           itinerary?: any;
@@ -80,7 +80,7 @@ export type Database = {
           location?: string | null;
           type?: string | null;
           availability?: any;
-          images?: string[] | null; // Changed from image to images
+          images?: string[] | null;
           features?: any;
           amenities?: any;
           itinerary?: any;
@@ -95,7 +95,7 @@ export type Database = {
           user_id: string;
           total_amount: number;
           payment_status: 'pending' | 'paid' | 'partial';
-          payment_plan: 'full' | 'deposit' | 'lipa_mdogo_mdogo';
+          payment_plan: 'full' | 'deposit' | 'lipa_mdogo_mdogo' | 'pay_on_arrival';
           created_at: string;
           guests: number | null;
           check_in_date: string | null;
@@ -108,7 +108,7 @@ export type Database = {
           user_id: string;
           total_amount: number;
           payment_status?: 'pending' | 'paid' | 'partial';
-          payment_plan?: 'full' | 'deposit' | 'lipa_mdogo_mdogo';
+          payment_plan?: 'full' | 'deposit' | 'lipa_mdogo_mdogo' | 'pay_on_arrival';
           created_at?: string;
           guests?: number | null;
           check_in_date?: string | null;
@@ -121,7 +121,7 @@ export type Database = {
           user_id?: string;
           total_amount?: number;
           payment_status?: 'pending' | 'paid' | 'partial';
-          payment_plan?: 'full' | 'deposit' | 'lipa_mdogo_mdogo';
+          payment_plan?: 'full' | 'deposit' | 'lipa_mdogo_mdogo' | 'pay_on_arrival';
           created_at?: string;
           guests?: number | null;
           check_in_date?: string | null;
@@ -171,6 +171,11 @@ export type Database = {
           trip_details: string;
           budget: number | null;
           created_at: string;
+          full_name: string | null;
+          email: string | null;
+          phone: string | null;
+          whatsapp_number: string | null;
+          status: string;
         };
         Insert: {
           id?: string;
@@ -178,6 +183,11 @@ export type Database = {
           trip_details: string;
           budget?: number | null;
           created_at?: string;
+          full_name?: string | null;
+          email?: string | null;
+          phone?: string | null;
+          whatsapp_number?: string | null;
+          status?: string;
         };
         Update: {
           id?: string;
@@ -185,6 +195,11 @@ export type Database = {
           trip_details?: string;
           budget?: number | null;
           created_at?: string;
+          full_name?: string | null;
+          email?: string | null;
+          phone?: string | null;
+          whatsapp_number?: string | null;
+          status?: string;
         };
       };
     };
